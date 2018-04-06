@@ -65,11 +65,9 @@ class App extends Component {
   }
 
   onItemClick(e){
-    //alert(e.target.name);
     let itemView;
-
     for (let i = 0; i<this.state.itemList.length; i++){
-      if (Number(e.target.name) ===this.state.itemList[i].id){
+      if (Number(e.target.id) ===this.state.itemList[i].id){
         itemView = this.state.itemList[i];
       }
     }
@@ -85,20 +83,23 @@ class App extends Component {
 
     return this.state.itemList.map((item)=>{
       return (
-        <div>
-          {item.name}
-          <img name={item.id} src={item.image} alt='Something went wrong' onClick={this.onItemClick}/>
+        <div className='column'>
+          <div className='beer-polaroid' id={item.id} onClick={this.onItemClick}>
+            <h3 className='item-header' id={item.id}>{item.name}</h3>
+            <img className='column-img' id={item.id} src={item.image} alt='Something went wrong' />
+            <div className='overlay' id={item.id}>
+              <div className='text' id={item.id}>More Info</div>
+            </div>
+          </div>
         </div>
       );
     });
-
-
   }
 
-  render() {
+  renderView(){
     if(this.state.currentView === 'default'){
       return (
-        <div className="App">
+        <div className="row">
           {this.renderList()}
         </div>
       );
@@ -109,7 +110,15 @@ class App extends Component {
         </div>
       );
     }
+  }
 
+  render() {
+    return(
+      <div>
+        <h1 className='header'>Beau&#39;s Seasonal Selection</h1>
+        {this.renderView()}
+      </div>
+    );
   }
 }
 

@@ -32,11 +32,20 @@ class ItemInfo extends Component {
       return this.props.item.stores.map((store)=>{
         if(store.address === this.state.currentStore){
           return(
-            <input type='radio' name='store' value={store.name} onClick={this.onStoreSelect} checked='checked'/>
+            <label>
+              <input type='radio' name='store' value={store.name} onClick={this.onStoreSelect} defaultChecked={true}/>
+              {store.name}
+              <br/>
+            </label>
+
           );
         }else{
           return(
-            <input type='radio' name='store' value={store.name} onClick={this.onStoreSelect}/>
+            <label>
+              <input type='radio' name='store' value={store.name} onClick={this.onStoreSelect}/>
+              {store.name}
+              <br/>
+            </label>
           );
         }
       });
@@ -45,22 +54,48 @@ class ItemInfo extends Component {
 
    render(){
      //console.log(this.props);
+     let dollarPrice = Number(this.props.item.price)/100;
      let address = `https://www.google.com/maps/embed/v1/place?key=${GOOGLE_KEY}&q=${this.state.currentStore}`;
      if(this.props.item.stores.length!==0){
        return(
-         <div>
-          <img src={this.props.item.image} alt='Something went wrong'/>
-          <form>{this.renderStoreList()}</form>
-          <button onClick={this.props.onBackClick}>Go back</button>
-          <iframe width="600" height="450" frameBorder="0" src={address} allowFullScreen>
+         <div className='grid-container'>
+          <div className='item-info-header'>{this.props.item.name}</div>
+          <div className='beer-polaroid2'>
+            <img className='item-info-img' src={this.props.item.image} alt='Something went wrong'/>
+          </div>
+          <button className='back-button' onClick={this.props.onBackClick}>Go back</button>
+          <div className='item-style'>
+            <h2>Style</h2>
+            <p>{this.props.item.style}</p>
+          </div>
+          <div className='item-price'>
+            <h2>Price</h2>
+            <p>${dollarPrice}</p>
+          </div>
+          <div className='item-stores'>
+            <h2>Available Stores</h2>
+            <form>{this.renderStoreList()}</form>
+          </div>
+          <iframe className='google-map' width="300" height="225" frameBorder="0" src={address} allowFullScreen>
           </iframe>
          </div>
        );
      }else{
        return(
-         <div>
-          <img src={this.props.item.image} alt='Something went wrong'/>
-          <button onClick={this.props.onBackClick}>Go back</button>
+         <div className='grid-container'>
+          <div className='item-info-header'>{this.props.item.name}</div>
+          <div className='beer-polaroid2'>
+            <img className='item-info-img' src={this.props.item.image} alt='Something went wrong'/>
+          </div>
+          <button className='back-button' onClick={this.props.onBackClick}>Go back</button>
+          <div className='item-style'>
+            <h2>Style</h2>
+            <p>{this.props.item.style}</p>
+          </div>
+          <div className='item-price'>
+            <h2>Price</h2>
+            <p>${dollarPrice}</p>
+          </div>
          </div>
        );
      }
