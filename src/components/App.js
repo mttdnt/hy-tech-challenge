@@ -30,9 +30,9 @@ class App extends Component {
         for (let i = 0; i<searchResult.length; i++){
           if(searchResult[i].producer_name === 'Beau\'s All Natural Brewing'){
             if(searchResult[i].image_thumb_url !== null){
-              beauList.push({id: searchResult[i].id, name: searchResult[i].name, style: searchResult[i].style, price: searchResult[i].price_in_cents, image: searchResult[i].image_thumb_url, stores:[] });
+              beauList.push({id: searchResult[i].id, name: searchResult[i].name, style: searchResult[i].style, price: searchResult[i].price_in_cents, image: searchResult[i].image_thumb_url, stores:[], alcohol: searchResult[i].alcohol_content  });
             }else{
-              beauList.push({id: searchResult[i].id, name: searchResult[i].name, style: searchResult[i].style, price: searchResult[i].price_in_cents, image: 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg', stores:[] });
+              beauList.push({id: searchResult[i].id, name: searchResult[i].name, style: searchResult[i].style, price: searchResult[i].price_in_cents, image: 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg', stores:[],  alcohol: searchResult[i].alcohol_content });
             }
           }
         }
@@ -57,7 +57,7 @@ class App extends Component {
           });
         }
 
-        console.log(beauList);
+        //console.log(beauList);
 
         this.setState({itemList: beauList.slice()});
 

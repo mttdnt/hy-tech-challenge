@@ -53,8 +53,8 @@ class ItemInfo extends Component {
    }
 
    render(){
-     //console.log(this.props);
      let dollarPrice = Number(this.props.item.price)/100;
+     let alcohol = Number(this.props.item.alcohol)/100;
      let address = `https://www.google.com/maps/embed/v1/place?key=${GOOGLE_KEY}&q=${this.state.currentStore}`;
      if(this.props.item.stores.length!==0){
        return(
@@ -71,6 +71,10 @@ class ItemInfo extends Component {
           <div className='item-price'>
             <h2>Price</h2>
             <p>${dollarPrice}</p>
+          </div>
+          <div className='alcohol-content'>
+            <h2>Alcohol Content</h2>
+            <p>{alcohol}%</p>
           </div>
           <div className='item-stores'>
             <h2>Available Stores</h2>
@@ -95,6 +99,13 @@ class ItemInfo extends Component {
           <div className='item-price'>
             <h2>Price</h2>
             <p>${dollarPrice}</p>
+          </div>
+          <div className='alcohol-content'>
+            <h2>Alcohol Content</h2>
+            <p>{alcohol}%</p>
+          </div>
+          <div className='item-stores'>
+            <h2>Currently not available in stores</h2>
           </div>
          </div>
        );
