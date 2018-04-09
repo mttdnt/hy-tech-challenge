@@ -1,6 +1,6 @@
-#Matthew Dent's HackerYou Techchallenge 
+# Matthew Dent's HackerYou Tech Challenge 
 
-#Steps to Run
+# Steps to Run
 
 ```
 1. npm install
